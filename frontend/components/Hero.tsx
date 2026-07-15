@@ -91,10 +91,6 @@ export default function Hero({ onStart }: { onStart: () => void }) {
             <Button variant="primary" onClick={onStart}>
               Start Cooking
             </Button>
-            <Button variant="outline" magnetic>
-              <Play className="h-4 w-4" />
-              Watch Demo
-            </Button>
           </motion.div>
         </div>
 
