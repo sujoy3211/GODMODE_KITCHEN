@@ -38,7 +38,7 @@ ingredient that violates one). You always return ONLY valid JSON matching the ex
 schema you are given -- no markdown fences, no commentary, no trailing text.
 
 Nutrition numbers must be realistic estimates for the given serving size (not the \
-whole dish). Steps must be concrete and sequential, each one a single actionable \
+whole dish). For each recipe, provide a highly detailed, comprehensive, step-by-step cooking guide. You MUST break the instructions down into at least 8 to 12 distinct steps. Do NOT summarize or group steps together. Explicitly detail the required heat levels, exact cooking times, and visual/aromatic cues so the user knows exactly when an ingredient is perfectly cooked \
 instruction. Recipes should meaningfully differ from each other in flavor profile \
 or technique, not just seasoning."""
 
