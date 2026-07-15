@@ -46,7 +46,7 @@ export default function Navbar({
           >
             <ChefHat className="h-5 w-5 text-obsidian" strokeWidth={2.4} />
           </motion.div>
-          <span className="font-display text-lg tracking-tight">Nourish AI</span>
+          <span className="font-display text-lg tracking-tight">PetPooja AI</span>
         </div>
 
         <div className="hidden items-center gap-8 text-sm text-smoke md:flex">

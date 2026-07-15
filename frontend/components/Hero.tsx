@@ -8,8 +8,8 @@ import ParticleNetwork from "./ParticleNetwork";
 import HeroVisual from "./HeroVisual";
 import StatCards from "./StatCards";
 
-const headline = "Your Ingredients.".split(" ");
-const headline2 = "Your Personal AI Chef.".split(" ");
+const headline = "PetPooja".split(" ");
+const headline2 = "Your AI Chef.".split(" ");
 
 const wordVariants = {
   hidden: { y: "110%", opacity: 0 },
@@ -77,7 +77,7 @@ export default function Hero({ onStart }: { onStart: () => void }) {
             transition={{ delay: 1.5, duration: 0.8 }}
             className="mx-auto mt-7 max-w-xl text-balance text-lg text-smoke sm:text-xl lg:mx-0"
           >
-            List what&rsquo;s already in your kitchen. Nourish AI designs three complete
+            List what&rsquo;s already in your kitchen. PetPooja AI designs three complete
             recipes, full nutrition, and a shopping list for anything you&rsquo;re missing —
             in seconds.
           </motion.p>

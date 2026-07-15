@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Manrope, JetBrains_Mono } from "next/font/google";
+// Suppress TypeScript error for side-effect CSS import in environments
+// where global CSS type declarations aren't present.
+// @ts-ignore: Unable to find type declarations for './globals.css'
 import "./globals.css";
 import CursorGlow from "@/components/CursorGlow";
 
@@ -23,9 +26,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nourish AI — Your Ingredients. Your Personal AI Chef.",
+  title: "PetPooja AI — Your Ingredients. Your Personal AI Chef.",
   description:
-    "Tell Nourish AI what's in your kitchen and it plans three complete recipes, full nutrition, and a shopping list for what's missing.",
+    "Tell PetPooja AI what's in your kitchen and it plans three complete recipes, full nutrition, and a shopping list for what's missing.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
