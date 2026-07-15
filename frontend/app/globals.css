@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 197, 125, 0.4) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 125, 0.35);
+  border-radius: 999px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  cursor: default;
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/[0.05] backdrop-blur-xl border border-white/[0.08] shadow-glass;
+  }
+
+  .glass-panel-strong {
+    @apply bg-white/[0.08] backdrop-blur-2xl border border-white/[0.12] shadow-glass;
+  }
+
+  .text-gradient-emerald {
+    @apply bg-gradient-to-br from-emerald-200 via-verdant to-verdant-deep bg-clip-text text-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-200 via-saffron to-gold-500 bg-clip-text text-transparent;
+  }
+
+  .btn-magnetic {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold tracking-tight transition-transform duration-300 ease-out;
+  }
+}
+
+.grain-overlay {
+  background-image: url("/noise.svg");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
