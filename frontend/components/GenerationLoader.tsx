@@ -89,7 +89,7 @@ export default function GenerationLoader() {
           </div>
         </div>
 
-        <h3 className="font-display text-2xl italic">Nourish AI is thinking…</h3>
+        <h3 className="font-display text-2xl italic">PetPooja AI is thinking…</h3>
 
         <div className="mt-3 h-6 overflow-hidden">
           <AnimatePresence mode="wait">

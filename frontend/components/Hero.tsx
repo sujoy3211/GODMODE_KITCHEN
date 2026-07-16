@@ -34,10 +34,7 @@ export default function Hero({ onStart }: { onStart: () => void }) {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="flex justify-center lg:justify-start"
           >
-            <Badge tone="emerald" className="mb-8">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Powered by Llama 3.3 70B on Groq
-            </Badge>
+            
           </motion.div>
 
           <h1 className="font-display text-5xl leading-[1.03] tracking-tight sm:text-6xl lg:text-7xl">
