@@ -1,34 +1,15 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { Suspense, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-
-const Canvas = dynamic(() => import("@react-three/fiber").then((m) => m.Canvas), { ssr: false });
-const HeroSceneContent = dynamic(() => import("./HeroSceneContent"), { ssr: false });
-
-const STATIC_ICONS = ["🥑", "🍅", "🧄", "🍄", "🫑", "🌿"];
-
-function StaticFallback() {
-  return (
-    <div className="relative flex h-full w-full items-center justify-center">
-      <div className="h-52 w-52 rounded-full bg-gradient-to-br from-verdant/20 to-saffron/10 blur-2xl" />
-      <div className="absolute grid grid-cols-3 gap-6 text-4xl opacity-80">
-        {STATIC_ICONS.map((icon) => (
-          <span key={icon}>{icon}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export default function HeroVisual() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
 
+  // Intersection Observer to start animations only when visible
   useEffect(() => {
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     const el = containerRef.current;
     if (!el) return;
     const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
@@ -38,25 +19,49 @@ export default function HeroVisual() {
     return () => io.disconnect();
   }, []);
 
+  const floatTransition = {
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  };
+
   return (
     <motion.div
       ref={containerRef}
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="relative h-[380px] w-full sm:h-[460px] lg:h-[560px]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: inView ? 1 : 0 }}
+      transition={{ duration: 1 }}
+      className="relative flex h-[380px] w-full max-w-lg items-center justify-center sm:h-[460px] lg:h-[560px] mx-auto"
     >
-      {reducedMotion ? (
-        <StaticFallback />
-      ) : inView ? (
-        <Suspense fallback={<StaticFallback />}>
-          <Canvas camera={{ position: [0, 0, 6.5], fov: 42 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true }}>
-            <HeroSceneContent />
-          </Canvas>
-        </Suspense>
-      ) : (
-        <StaticFallback />
-      )}
+      {/* --- Background Ambient Glow --- */}
+      <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-verdant/5 blur-[100px]" />
+
+      {/* --- Layer 1: Cilantro (Background) --- */}
+      <motion.div
+        className="absolute -left-5 top-1/4 z-0"
+        animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+        transition={{ ...floatTransition, delay: 0.5 }}
+      >
+        <Image src="/hero_cilantro.png" alt="Fresh Cilantro" width={180} height={180} className="drop-shadow-xl" priority />
+      </motion.div>
+
+      {/* --- Layer 2: Pepper (Foreground) --- */}
+      <motion.div
+        className="absolute -right-2 top-1/3 z-20"
+        animate={{ y: [0, -15, 0], rotate: [0, -8, 0] }}
+        transition={floatTransition}
+      >
+        <Image src="/hero_pepper.png" alt="Red Bell Pepper" width={200} height={200} className="drop-shadow-2xl" priority />
+      </motion.div>
+
+      {/* --- Layer 3: Lime (Midground) --- */}
+      <motion.div
+        className="absolute -bottom-10 left-10 z-10"
+        animate={{ y: [0, -12, 0], rotate: [0, 10, 0] }}
+        transition={{ ...floatTransition, delay: 1 }}
+      >
+        <Image src="/hero_lime.png" alt="Lime Wedge" width={140} height={140} className="drop-shadow-xl" priority />
+      </motion.div>
     </motion.div>
   );
 }
