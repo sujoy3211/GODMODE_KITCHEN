@@ -26,7 +26,7 @@ export default function RecipeResults({
         className="mb-12 text-center"
       >
         <h2 className="font-display text-4xl italic tracking-tight sm:text-5xl">
-          Three ways to <span className="text-gradient-emerald not-italic">nourish</span> tonight
+          Three ways to <span className="text-gradient-emerald not-italic">PetPooja</span> tonight
         </h2>
         {result.chef_notes && (
           <p className="mx-auto mt-4 flex max-w-2xl items-start gap-2 text-sm text-white/50">
